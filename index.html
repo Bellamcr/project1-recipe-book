@@ -8,26 +8,34 @@
 </head>
 <body>
     <h1>Let's cook!</h1>
-    <div class="form">
-        <div class="form-name">Add new recipe</div>
-        <form>
-            <label for="name">Recipe name</label>
-            <input type="text" id="recipe-name" name="recipe" /><br>
-            <label for="recipe-types">Recipe type</label>
-            <select name="types" id="recipe-select">
-                <option>Snack</option>
-                <option>Meal</option>
-                <option>Desert</option>
-                <option>Drink</option>
-            </select><br>
-            <label for="ingredients">Ingredients</label>
-            <input type="text" id="recipe-ingredients" name="ingredients" /><br>
-            <label for="instructions">Instructions</label>
-            <textarea id="recipe-instructions" name="instructions"></textarea><br>
-            <label for="photo">Add a photo</label>
-            <input type="file" id="recipe-photo" name="photo" accept="image/png, image/jpeg" /><br>
-            <input type="submit" value="Add recipe!" />
-        </form>
+    <div class="left-column">
+        <div class="form">
+                <div class="form-name">Add new recipe</div>
+                <form>
+                    <label for="name">Recipe name</label>
+                    <input type="text" id="recipe-name" name="recipe" required/><br>
+                    <label for="recipe-types">Recipe type</label>
+                    <select name="types" id="recipe-select" required>
+                        <option>Snack</option>
+                        <option>Meal</option>
+                        <option>Desert</option>
+                        <option>Drink</option>
+                    </select><br>
+                    <label for="ingredients">Ingredients</label>
+                    <input type="text" id="recipe-ingredients" name="ingredients" required/><br>
+                    <label for="method">Method</label>
+                    <textarea id="recipe-method" name="method" required></textarea><br>
+                    <label for="photo">Add a photo</label>
+                    <input type="file" id="recipe-photo" name="photo" accept="image/png, image/jpeg" /><br>
+                    <input type="submit" value="Add recipe!" />
+                </form>
+            </div>
     </div>
+    <div class="right-column">
+
+    </div>
+    <div class="recipe-page"></div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
