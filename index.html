@@ -18,13 +18,15 @@
                     <select name="types" id="recipe-select" required>
                         <option>Snack</option>
                         <option>Meal</option>
-                        <option>Desert</option>
+                        <option>Dessert</option>
                         <option>Drink</option>
                     </select><br>
                     <label for="ingredients">Ingredients</label>
                     <input type="text" id="recipe-ingredients" name="ingredients" required/><br>
-                    <label for="method">Method</label>
-                    <textarea id="recipe-method" name="method" required></textarea><br>
+                    <label for="directions">Directions</label>
+                    <textarea id="recipe-directions" name="directions" required></textarea><br>
+                    <label for="yields">Yields</label>
+                    <input id="recipe-yields" name="yields" required/><br>
                     <label for="photo">Add a photo</label>
                     <input type="file" id="recipe-photo" name="photo" accept="image/png, image/jpeg" /><br>
                     <input type="submit" value="Add recipe!" />
@@ -32,7 +34,13 @@
             </div>
     </div>
     <div class="right-column">
-
+        <h2 class="recipe-card">Name of the recipe</h2>
+        <div>
+            <p>YIELDS:</p>
+            <p>serving(s)</p>
+            
+        </div>
+            
     </div>
     <div class="recipe-page"></div>
     
