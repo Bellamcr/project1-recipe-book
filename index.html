@@ -8,6 +8,10 @@
 </head>
 <body>
     <h1>Let's cook!</h1>
+    <div class="search-box">
+        <input type="text" class="search-control" placeholder="search recipes" id="search-input"/>
+        <button type="submit" class="press-search-btn" id="search-btn">Search</button>
+    </div>
     <div class="left-column">
         <div class="form">
                 <div class="form-name">Add new recipe</div>
@@ -22,10 +26,10 @@
                         <option>Drink</option>
                     </select><br>
                     <label for="ingredients">Ingredients</label>
-                    <input type="text" id="recipe-ingredients" name="ingredients" required/><br>
+                    <textarea type="text" id="recipe-ingredients" name="ingredients" required></textarea><br>
                     <label for="directions">Directions</label>
                     <textarea id="recipe-directions" name="directions" required></textarea><br>
-                    <label for="yields">Yields</label>
+                    <label for="yields">Yield</label>
                     <input id="recipe-yields" name="yields" required/><br>
                     <label for="photo">Add a photo</label>
                     <input type="file" id="recipe-photo" name="photo" accept="image/png, image/jpeg" /><br>
@@ -34,14 +38,12 @@
             </div>
     </div>
     <div class="right-column">
-        <h2 class="recipe-card">Name of the recipe</h2>
-        <div>
-            <p>YIELDS:</p>
-            <p>serving(s)</p>
-            
-        </div>
-            
+        <div id="recipe-list"></div>
+        <div id="no-recipes">You have no recipes.</div>    
+
     </div>
+
+
     <div class="recipe-page"></div>
     
     <script src="script.js"></script>
