@@ -19,7 +19,7 @@ function handleSubmit(event) {
     const directions = directionsInput.value.trim();
     const yields = yieldsInput.value.trim();
 
-    if (name && typeInput && ingredients.length > 0 && directions.length > 0 && yields && photoUpload) {
+    if (name && typeInput && ingredients.length > 0 && directions.length > 0) {
         const newRecipe = { name, typeInput, ingredients, directions, yields, photoUpload };
         recipes.push(newRecipe);
     }
