@@ -7,45 +7,45 @@
     <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-    <h1>Let's cook!</h1>
-    <div class="search-box">
+    <nav>
+       <h1>Let's cook!</h1>
+        <div class="search-box">
         <input type="text" class="search-control" placeholder="search recipes" id="search-input"/>
         <button type="submit" class="press-search-btn" id="search-btn">Search</button>
-    </div>
-    <div class="left-column">
-        <div class="form">
-                <div class="form-name">Add new recipe</div>
-                <form>
-                    <label for="name">Recipe name</label>
+        </div> 
+    </nav>
+    <div class="container">
+        <div class="left-column">
+        <div class="form-name">Add new recipe</div>
+            <form id="form">
+                <label for="recipe-name">Recipe name</label>
                     <input type="text" id="recipe-name" name="recipe" required/><br>
-                    <label for="recipe-types">Recipe type</label>
+                    <label for="recipe-select">Recipe type</label>
                     <select name="types" id="recipe-select" required>
-                        <option>Snack</option>
-                        <option>Meal</option>
-                        <option>Dessert</option>
-                        <option>Drink</option>
+                        <option value="-">-</option>
+                        <option value="Snack">Snack</option>
+                        <option value="Meal">Meal</option>
+                        <option value="Dessert">Dessert</option>
+                        <option value="Drink">Drink</option>
                     </select><br>
-                    <label for="ingredients">Ingredients</label>
+                    <label for="recipe-ingredients">Ingredients</label>
                     <textarea type="text" id="recipe-ingredients" name="ingredients" required></textarea><br>
-                    <label for="directions">Directions</label>
+                    <label for="recipe-directions">Directions</label>
                     <textarea id="recipe-directions" name="directions" required></textarea><br>
-                    <label for="yields">Yield</label>
+                    <label for="recipe-yields">Yield</label>
                     <input id="recipe-yields" name="yields"/><br>
-                    <label for="photo">Add a photo</label>
+                    <label for="recipe-photo">Add a photo</label>
                     <input type="file" id="recipe-photo" name="photo" accept="image/png, image/jpeg" /><br>
-                    <input type="submit" value="Add recipe!" />
-                </form>
-            </div>
-    </div>
-    <div class="right-column">
-        <div id="recipe-list"></div>
-        <div id="no-recipes">You have no recipes.</div>    
+                    <button id="submit" type="submit">Add recipe!</button>
+            </form>                          
+        </div>
+        <div class="right-column">
+            <div id="recipe-list"></div>
+            <div id="no-recipes">You have no recipes.</div>    
 
-    </div>
-
-
-    <div class="recipe-page"></div>
-    
+        </div>
+        <div class="recipe-page"></div>
+    </div> 
     <script src="script.js"></script>
 </body>
 </html>
