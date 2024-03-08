@@ -18,10 +18,10 @@
         <div class="right-column">
             <div id="recipe-list"></div>
             <div id="no-recipes">You have no recipes.</div> 
-            <!-- <button onclick="showAddRecipeForm()">ADD RECIPE</button>    -->
+            <button class="show-form-btn" onclick="showAddRecipeForm()">ADD RECIPE</button>   
         </div>
         <div class="left-column">
-        <form class="recipe-form">
+        <form id="recipeForm" class="recipe-form">
             <div class="title">New Recipe</div>          
             <label for="recipeName">Recipe name</label>
             <input type="text" id="recipeName" name="recipe" required/><br>
@@ -42,13 +42,13 @@
             <label for="recipePhoto" class="photo-upload-btn">Add a photo</label>
             <input type="file" id="recipePhoto" name="photo" accept="image/png, image/jpeg, image/jpg" /><br>
             <button type="submit">Add recipe!</button>
-                                             
+            <!-- onclick="createNewRecipe()" -->
+            <button class="cancel-btn" onclick="cancelNewRecipe()">X</button>                                  
         </form>        
     </div> 
     <script src="script.js"></script>
 </body>
 </html>
 
-<!-- <button class="cancel" onclick="cancelNewRecipe()">X</button>  -->
 
-<!-- onclick="createNewRecipe()" -->
+

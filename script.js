@@ -4,6 +4,10 @@ let form = document.querySelector('form');
 
 let recipes = [];
 
+function showAddRecipeForm(){
+    show('recipeForm')
+}
+
 function handleSubmit(event) {  
     // Prevent default form submission behavior
     event.preventDefault();
@@ -37,6 +41,10 @@ function handleSubmit(event) {
 
 form.addEventListener('submit', handleSubmit);
 
+function cancelNewRecipe() {
+    hide('recipeForm')
+}
+
 function displayRecipes() {
     recipeList.innerHTML = '';
     recipes.forEach((recipe, index) => {
@@ -55,9 +63,17 @@ function displayRecipes() {
     noRecipes.style.display = recipes.length > 0 ? 'none' : 'flex';
 
     });
-
 }
 
+function hide(elementId) {
+    document.getElementById(elementId).style.display='none'
+}
+
+function show(elementId) {
+    document.getElementById(elementId).style.display=null
+}
+
+hide('recipeForm')
 
 
 
