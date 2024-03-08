@@ -4,12 +4,13 @@ let form = document.querySelector('form');
 
 let recipes = [];
 
+//Add recipe nutton
 function showAddRecipeForm(){
     show('recipeForm')
 }
 
+//Adding new recipe
 function handleSubmit(event) {  
-    // Prevent default form submission behavior
     event.preventDefault();
 
     let nameInput = document.getElementById('recipeName');
@@ -36,15 +37,18 @@ function handleSubmit(event) {
     directionsInput.value = '';
     yieldsInput.value = '';    
         
-    displayRecipes();
+    displayRecipes();    
+    hide('recipeForm')
 }
 
 form.addEventListener('submit', handleSubmit);
 
+//Cancel add new recipe
 function cancelNewRecipe() {
     hide('recipeForm')
 }
 
+//Display recipes added
 function displayRecipes() {
     recipeList.innerHTML = '';
     recipes.forEach((recipe, index) => {
@@ -57,6 +61,7 @@ function displayRecipes() {
     <p><strong>Yield:</strong></p>
     <p>${recipe.yields}</p>
     <button class="delete-button" data-index="${index}">Delete</button>`;
+    
 
     recipeDiv.classList.add('recipe');
     recipeList.appendChild(recipeDiv);
@@ -68,7 +73,6 @@ function displayRecipes() {
 function hide(elementId) {
     document.getElementById(elementId).style.display='none'
 }
-
 function show(elementId) {
     document.getElementById(elementId).style.display=null
 }
