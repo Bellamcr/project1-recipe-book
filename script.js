@@ -2,93 +2,146 @@ let recipeList = document.getElementById('recipe-list');
 let noRecipes = document.getElementById('no-recipes');
 let form = document.querySelector('form');
 
-let recipes = [];
+let recipes = [
+  {
+    name: 'Chocolate cake',
+    type: 'Dessert',
+    ingredients: ['Flour', 'Sugar', 'Chocolate'],
+    directions:
+      'Mix all the ingredients and bake it for 25 minutes at 250 celsius',
+    yields: 'Serves 4 people',
+  },
+  {
+    name: 'Chocolate cake 2',
+    type: 'Dessert',
+    ingredients: ['Flour', 'Sugar', 'Chocolate', 'Milk'],
+    directions:
+      'Mix all the ingredients and bake it for 25 minutes at 250 celsius',
+    yields: 'Serves 4 people',
+  },
+];
 
+if (recipes) displayRecipes();
 //Add recipe nutton
-function showAddRecipeForm(){
-    show('recipeForm')
+function showAddRecipeForm() {
+  show('recipeForm');
 }
 
 //Adding new recipe
-function handleSubmit(event) {  
-    event.preventDefault();
+function handleSubmit(event) {
+  event.preventDefault();
 
-    let nameInput = document.getElementById('recipeName');
-    let typeInput = document.getElementById('recipeSelect');
-    let ingrInput = document.getElementById('recipeIngredients');
-    let directionsInput = document.getElementById('recipeDirections');
-    let yieldsInput = document.getElementById('recipeYields');
-    
-    let name = nameInput.value.trim();
-    let type = typeInput.value;
-    let ingredients = ingrInput.value.trim().split(',').map(i => i.trim());
-    let directions = directionsInput.value.trim();
-    let yields = yieldsInput.value.trim();
-    
-    if (name && type && ingredients.length > 0 && directions.length > 0 && yields) {
-        let newRecipe = { name, type, ingredients, directions, yields};
-        console.log(newRecipe);
-        recipes.push(newRecipe);
-    }
+  let nameInput = document.getElementById('recipeName');
+  let typeInput = document.getElementById('recipeSelect');
+  let ingrInput = document.getElementById('recipeIngredients');
+  let directionsInput = document.getElementById('recipeDirections');
+  let yieldsInput = document.getElementById('recipeYields');
 
-    nameInput.value = '';
-    typeInput.value = '';
-    ingrInput.value = '';
-    directionsInput.value = '';
-    yieldsInput.value = '';    
-        
-    displayRecipes();    
-    hide('recipeForm')
+  let name = nameInput.value.trim();
+  let type = typeInput.value;
+  let ingredients = ingrInput.value
+    .trim()
+    .split(',')
+    .map((i) => i.trim());
+  let directions = directionsInput.value.trim();
+  let yields = yieldsInput.value.trim();
+
+  if (
+    name &&
+    type &&
+    ingredients.length > 0 &&
+    directions.length > 0 &&
+    yields
+  ) {
+    let newRecipe = { name, type, ingredients, directions, yields };
+    // console.log(newRecipe);
+    recipes.push(newRecipe);
+  }
+
+  nameInput.value = ' ';
+  typeInput.value = ' ';
+  ingrInput.value = ' ';
+  directionsInput.value = ' ';
+  yieldsInput.value = ' ';
+
+  displayRecipes();
+  hide('recipeForm');
 }
 
 form.addEventListener('submit', handleSubmit);
 
 //Cancel add new recipe
 function cancelNewRecipe() {
-    hide('recipeForm')
+  hide('recipeForm');
 }
 
 //Display recipes added
 function displayRecipes() {
-    recipeList.innerHTML = '';
-    recipes.forEach((recipe, index) => {
-    const recipeDiv = document.createElement('div'); 
-    
-    recipeDiv.innerHTML = `   
+  recipeList.innerHTML = ' ';
+  recipes.forEach((recipe, index) => {
+    recipeList.appendChild(buildRecipeCard(recipe, index));
+  });
+  noRecipes.style.display = recipes.length > 0 ? 'none' : 'flex';
+}
+
+function buildRecipeCard(recipe, index) {
+  const recipeDiv = document.createElement('div');
+
+  recipeDiv.innerHTML = `   
     <h3>${recipe.name}</h3>
     <p><strong>Type:</strong></p>
     <p>${recipe.type}</p>
     <p><strong>Yield:</strong></p>
     <p>${recipe.yields}</p>
-    <button class="delete-button" data-index="${index}">Delete</button>`;
-    
+    <button class="delete-button" data-index="${index}">Delete</button>
+    <button id="myBtn" class="view-recipe-btn" onclick="viewRecipe(${index})" data-index="${index}">View Recipe</button>`;
 
-    recipeDiv.classList.add('recipe');
-    recipeList.appendChild(recipeDiv);
-    noRecipes.style.display = recipes.length > 0 ? 'none' : 'flex';
+  recipeDiv.classList.add('recipe');
+  return recipeDiv;
+}
 
-    });
+function viewRecipe(index) {
+  const currentRecipe = recipes[index];
+  document.getElementById('title').textContent = currentRecipe.name;
+  document.getElementById('lblYield').textContent = currentRecipe.yields;
+  document.getElementById('lblIngredients').textContent =
+    currentRecipe.ingredients.join(' | ');
+  document.getElementById('lblDirections').textContent =
+    currentRecipe.directions;
+
+  openModal();
+}
+
+function openModal() {
+  let modal = document.getElementById('myModal');
+  let span = document.getElementsByClassName('close')[0];
+
+  modal.style.display = 'block';
+
+  span.onclick = function () {
+    modal.style.display = 'none';
+  };
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  };
 }
 
 function hide(elementId) {
-    document.getElementById(elementId).style.display='none'
+  document.getElementById(elementId).style.display = 'none';
 }
 function show(elementId) {
-    document.getElementById(elementId).style.display=null
+  document.getElementById(elementId).style.display = null;
 }
 
-hide('recipeForm')
-
-
-
-    
-  
+hide('recipeForm');
 
 // function viewRecipe() {
 //     recipes.forEach((recipe, index) => {
-    
+
 //     let showrecipeDiv = document.createElement('div');
-        
+
 //     showrecipeDiv.innerHTML = `
 //         <h3>${recipe.name}</h3>
 //         <p><strong>Ingredients:</strong></p>
@@ -96,15 +149,15 @@ hide('recipeForm')
 //         <p><strong>Directions:</strong></p>
 //         <p>${recipe.directions}</p>
 //         <button class="close-button" data-index="${index}">Close</button>`;
-        
-    
+
 //     showrecipeDiv.classList.add('show-recipe');
 
 //     });
 // }
 
-
-{/* <button class="delete-button" data-index="${recipes.indexOf(recipe)}">Delete</button> */}
+{
+  /* <button class="delete-button" data-index="${recipes.indexOf(recipe)}">Delete</button> */
+}
 // function handleDelete(event) {
 //     if (event.target.classList.contains('delete-button')) {
 //         const index = event.target.dataset.index;
@@ -116,8 +169,9 @@ hide('recipeForm')
 
 // recipeList.addEventListener('click', handleDelete);
 
-
-{/* <img src=${recipe.photoUploaded}> */}
+{
+  /* <img src=${recipe.photoUploaded}> */
+}
 // let photoInput = document.getElementById('#recipe-photo');
 //     photoInput.addEventListener('change', (event) => {
 //         const image = event.target.files[0]
@@ -125,40 +179,41 @@ hide('recipeForm')
 //         reader.readAsDataURL(image)
 //         reader.addEventListener('load', () => {
 //             localStorage.setItem('#recipe-photo', reader.result)
-//         })  
+//         })
 //     })
 //     document.addEventListener('DOMContentLoaded', () => {
 //         const photoUploaded = localStorage.getItem('#recipe-photo')
 //         // const previewImage = document.getElementById('preview')
 //         if (photoUploaded) {
 //             previewImage.setAttribute('src', photoUploaded)
-//         } 
+//         }
 //         else {
 //             previewImage.setAttribute('src', 'default.jpg')
 //         }
 
 //     });
 
-{/* <button class="delete-button" data-index="${index}">Delete</button>
+{
+  /* <button class="delete-button" data-index="${index}">Delete</button>
 <button id="show-recipe">View Recipe!</button>
 <div id="recipe-card">
     <button id="hide-recipe">X</button>
     <pre id="ingredient-con">${recipe.ingredients}</pre>
     <pre id="directions">${recipe.directions}</pre>
-</div> */}
+</div> */
+}
 
-    // let hideRecipe = document.getElementById("hide-recipe");
-    // let showRecipe = document.getElementById("show-recipe");
-    // let recipeCard = document.getElementById("recipe-card");
-    
-    
-    // hideRecipe.addEventListener("click", () => {
-    //     recipeCard.style.display = "none";
-    // });
-    // showRecipe.addEventListener("click", () => {
-    //    recipeCard.style.display = "block";
-    // });
-        
-    // recipeDiv.classList.add('recipe');
-    // recipeList.appendChild(recipeDiv);
-    // noRecipes.style.display = recipes.length > 0 ? 'none' : 'flex';
+// let hideRecipe = document.getElementById("hide-recipe");
+// let showRecipe = document.getElementById("show-recipe");
+// let recipeCard = document.getElementById("recipe-card");
+
+// hideRecipe.addEventListener("click", () => {
+//     recipeCard.style.display = "none";
+// });
+// showRecipe.addEventListener("click", () => {
+//    recipeCard.style.display = "block";
+// });
+
+// recipeDiv.classList.add('recipe');
+// recipeList.appendChild(recipeDiv);
+// noRecipes.style.display = recipes.length > 0 ? 'none' : 'flex';
