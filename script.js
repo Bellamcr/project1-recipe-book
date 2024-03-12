@@ -21,8 +21,8 @@ let recipes = [
   },
 ];
 
+//First look of the page
 if (recipes) displayRecipes();
-//Add recipe nutton
 function showAddRecipeForm() {
   show('recipeForm');
 }
@@ -54,7 +54,6 @@ function handleSubmit(event) {
     yields
   ) {
     let newRecipe = { name, type, ingredients, directions, yields };
-    // console.log(newRecipe);
     recipes.push(newRecipe);
   }
 
@@ -93,13 +92,14 @@ function buildRecipeCard(recipe, index) {
     <p>${recipe.type}</p>
     <p><strong>Yield:</strong></p>
     <p>${recipe.yields}</p>
-    <button class="delete-button" data-index="${index}">Delete</button>
-    <button id="myBtn" class="view-recipe-btn" onclick="viewRecipe(${index})" data-index="${index}">View Recipe</button>`;
+    <button id="myBtn" class="view-recipe-btn" onclick="viewRecipe(${index})" data-index="${index}">View Recipe</button>    
+    <button class="delete-button" data-index="${index}">Delete</button>`;
 
   recipeDiv.classList.add('recipe');
   return recipeDiv;
 }
 
+//View recipe modal
 function viewRecipe(index) {
   const currentRecipe = recipes[index];
   document.getElementById('title').textContent = currentRecipe.name;
@@ -137,23 +137,6 @@ function show(elementId) {
 
 hide('recipeForm');
 
-// function viewRecipe() {
-//     recipes.forEach((recipe, index) => {
-
-//     let showrecipeDiv = document.createElement('div');
-
-//     showrecipeDiv.innerHTML = `
-//         <h3>${recipe.name}</h3>
-//         <p><strong>Ingredients:</strong></p>
-//         <p>${recipe.ingredients}</p>
-//         <p><strong>Directions:</strong></p>
-//         <p>${recipe.directions}</p>
-//         <button class="close-button" data-index="${index}">Close</button>`;
-
-//     showrecipeDiv.classList.add('show-recipe');
-
-//     });
-// }
 
 {
   /* <button class="delete-button" data-index="${recipes.indexOf(recipe)}">Delete</button> */
