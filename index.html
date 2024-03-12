@@ -7,13 +7,19 @@
     <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-    <nav>
-       <h1>Let's cook!</h1>
+    <div class="header">
+        <div>
+                 
+        </div>
+        <div class="title">
+            <h1>Let's cook!</h1>
+        </div>
         <div class="search-box">
-        <input type="text" class="search-control" placeholder="search recipes" id="search-input"/>
-        <button type="submit" class="press-search-btn" id="search-btn">Search</button>
+            <input type="text" class="search-control" placeholder="Search recipes" id="search-input"/>
+            <button type="submit" class="press-search-btn" id="search-btn">Search</button>
+            <!-- <img class="background-nav-img" src="background.jpg" alt="background-nav"></img> -->
         </div> 
-    </nav>
+    </div>
     <div class="container">
         <div class="right-column">
             <div id="recipe-list"></div>
@@ -22,7 +28,7 @@
         </div>
         <div class="left-column">
         <form id="recipeForm" class="recipe-form">
-            <div class="title">New Recipe</div>          
+            <div class="form-title">New Recipe</div>          
             <label for="recipeName">Recipe name</label>
             <input type="text" id="recipeName" name="recipe" required/><br>
             <label for="recipeSelect">Recipe type</label>
