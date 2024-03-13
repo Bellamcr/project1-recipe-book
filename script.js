@@ -4,20 +4,43 @@ let form = document.querySelector('form');
 
 let recipes = [
   {
-    name: 'Chocolate cake',
+    name: 'Chocolate Cake',
     type: 'Dessert',
-    ingredients: ['Flour', 'Sugar', 'Chocolate'],
-    directions:
-      'Mix all the ingredients and bake it for 25 minutes at 250 celsius',
-    yields: 'Serves 4 people',
+    ingredients: [
+      '2 cups sugar',
+      '1 - 3/4 cups all-purpose flour',
+      "3/4 cup HERSHEY'S Cocoa",
+      '1 - 1/2 tsps baking powder',
+      '1 - 1/2 tsps baking soda',
+      '1 tsp salt',
+      '2 eggs',
+      '1 cup milk',
+      '1/2 cup vegetable oil',
+      '2 tsps vanilla extract',
+      '1 cup boiling water',
+    ],
+    directions: [
+      'Heat oven to 350°F. Grease and flour two 9-inch round baking pans.',
+      'Stir together sugar, flour, cocoa, baking powder, baking soda and salt in large bowl. Add eggs, milk, oil and vanilla; beat on medium speed of mixer 2 minutes. Stir in boiling water (batter will be thin). Pour batter into prepared pans.',
+      'Bake 30 to 35 minutes or until wooden pick inserted in center comes out clean. Cool 10 minutes; remove from pans to wire racks. Cool completely. Frost with "Perfectly Chocolate" Chocolate Frosting.',
+    ],
+    yields: '1 cake',
   },
   {
-    name: 'Chocolate cake 2',
+    name: 'Chocolate Frosting',
     type: 'Dessert',
-    ingredients: ['Flour', 'Sugar', 'Chocolate', 'Milk'],
-    directions:
-      'Mix all the ingredients and bake it for 25 minutes at 250 celsius',
-    yields: 'Serves 4 people',
+    ingredients: [
+      '1/2 cup butter or margarine (1 stick)',
+      "2/3 cup HERSHEY'S Cocoa",
+      '3 cups powdered sugar',
+      '1/3 cup milk',
+      '1 tsp vanilla extract',
+    ],
+    directions: [
+      'Melt butter. Stir in cocoa. Alternately, add powdered sugar and milk, beating to spreading consistency.',
+      'Add small amount additional milk, if needed. Stir in vanilla.',
+    ],
+    yields: '2 cups',
   },
 ];
 
@@ -90,10 +113,10 @@ function buildRecipeCard(recipe, index) {
     <h3>${recipe.name}</h3>
     <p><strong>Type:</strong></p>
     <p>${recipe.type}</p>
-    <p><strong>Yield:</strong></p>
+    <p><strong>Yields:</strong></p>
     <p>${recipe.yields}</p>
     <button id="myBtn" class="view-recipe-btn" onclick="viewRecipe(${index})" data-index="${index}">View Recipe</button>    
-    <button class="delete-button" data-index="${index}">Delete</button>`;
+    <button id="deleteBtn" class="delete-button" onclick="deleteRecipe(${index})" data-index="${index}">Delete</button>`;
 
   recipeDiv.classList.add('recipe');
   return recipeDiv;
@@ -107,7 +130,7 @@ function viewRecipe(index) {
   document.getElementById('lblIngredients').textContent =
     currentRecipe.ingredients.join(' | ');
   document.getElementById('lblDirections').textContent =
-    currentRecipe.directions;
+    currentRecipe.directions.join(' | ');
 
   openModal();
 }
@@ -137,66 +160,16 @@ function show(elementId) {
 
 hide('recipeForm');
 
-
-{
-  /* <button class="delete-button" data-index="${recipes.indexOf(recipe)}">Delete</button> */
-}
-// function handleDelete(event) {
-//     if (event.target.classList.contains('delete-button')) {
-//         const index = event.target.dataset.index;
-//     }
-//     recipes.splice(index, 1);
-
-//     displayRecipes();
-// }
-
-// recipeList.addEventListener('click', handleDelete);
-
-{
-  /* <img src=${recipe.photoUploaded}> */
-}
-// let photoInput = document.getElementById('#recipe-photo');
-//     photoInput.addEventListener('change', (event) => {
-//         const image = event.target.files[0]
-//         const reader = new FileReader();
-//         reader.readAsDataURL(image)
-//         reader.addEventListener('load', () => {
-//             localStorage.setItem('#recipe-photo', reader.result)
-//         })
-//     })
-//     document.addEventListener('DOMContentLoaded', () => {
-//         const photoUploaded = localStorage.getItem('#recipe-photo')
-//         // const previewImage = document.getElementById('preview')
-//         if (photoUploaded) {
-//             previewImage.setAttribute('src', photoUploaded)
-//         }
-//         else {
-//             previewImage.setAttribute('src', 'default.jpg')
-//         }
-
-//     });
-
-{
-  /* <button class="delete-button" data-index="${index}">Delete</button>
-<button id="show-recipe">View Recipe!</button>
-<div id="recipe-card">
-    <button id="hide-recipe">X</button>
-    <pre id="ingredient-con">${recipe.ingredients}</pre>
-    <pre id="directions">${recipe.directions}</pre>
-</div> */
+function deleteRecipe(index) {
+  const delRecipe = recipes[index];
+  if (delRecipe) {
+    recipes.splice(index, 1);
+  };
+  displayRecipes();
 }
 
-// let hideRecipe = document.getElementById("hide-recipe");
-// let showRecipe = document.getElementById("show-recipe");
-// let recipeCard = document.getElementById("recipe-card");
+recipeList.addEventListener('click', deleteRecipe);
 
-// hideRecipe.addEventListener("click", () => {
-//     recipeCard.style.display = "none";
-// });
-// showRecipe.addEventListener("click", () => {
-//    recipeCard.style.display = "block";
-// });
-
-// recipeDiv.classList.add('recipe');
-// recipeList.appendChild(recipeDiv);
-// noRecipes.style.display = recipes.length > 0 ? 'none' : 'flex';
+function searchRecipe(){
+  
+}

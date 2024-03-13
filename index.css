@@ -60,7 +60,7 @@ body {
   margin: 150px 5%;
 }
 
-.right-column {
+.left-column {
   width: 65%;
 }
 
@@ -92,7 +92,7 @@ body {
   background-color: purple;
 }
 
-.left-column {
+.right-column {
   width: 25%;
 }
 
@@ -235,6 +235,7 @@ textarea {
 /* The Close Button */
 .close {
   color: #aaaaaa;
+  float: right;
   font-size: 28px;
   font-weight: bold;
 }
