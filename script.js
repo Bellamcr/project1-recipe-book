@@ -1,6 +1,7 @@
 let recipeList = document.getElementById('recipe-list');
 let noRecipes = document.getElementById('no-recipes');
 let form = document.querySelector('form');
+let searchBox = document.getElementById('search-input');
 
 let recipes = [
   {
@@ -27,7 +28,7 @@ let recipes = [
     yields: '1 cake',
   },
   {
-    name: 'Chocolate Frosting',
+    name: 'Frosting',
     type: 'Dessert',
     ingredients: [
       '1/2 cup butter or margarine (1 stick)',
@@ -164,12 +165,39 @@ function deleteRecipe(index) {
   const delRecipe = recipes[index];
   if (delRecipe) {
     recipes.splice(index, 1);
-  };
+  }
   displayRecipes();
+
+  searchBox.value = '';
 }
 
 recipeList.addEventListener('click', deleteRecipe);
 
-function searchRecipe(){
-  
+function searchRecipe(query) {
+  const filteredRecipes = recipes.filter((recipe) => {
+    return recipe.name.toLowerCase().includes(query.toLowerCase());
+  });
+
+  recipeList.innerHTML = '';
+
+  filteredRecipes.forEach((recipe, index) => {
+    const recipeEl = document.createElement('div');
+    
+    recipeEl.innerHTML = `
+    <h3>${recipe.name}</h3>
+    <p><strong>Type:</strong></p>
+    <p>${recipe.type}</p>
+    <p><strong>Yields:</strong></p>
+    <p>${recipe.yields}</p>
+    <button id="myBtn" class="view-recipe-btn" onclick="viewRecipe(${index})" data-index="${index}">View Recipe</button>    
+    <button id="deleteBtn" class="delete-button" onclick="deleteRecipe(${index})" data-index="${index}">Delete</button>`;
+
+    recipeEl.classList.add('recipe');
+    recipeList.appendChild(recipeEl);
+  });
 }
+searchBox.addEventListener('input', (event) =>
+  searchRecipe(event.target.value)
+);
+searchBox.addEventListener('click', searchRecipe
+);
