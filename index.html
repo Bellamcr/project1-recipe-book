@@ -21,7 +21,7 @@
         <div class="left-column">
             <div id="recipe-list"></div>
             <div id="no-recipes">You have no recipes.</div> 
-            <button class="show-form-btn" onclick="showAddRecipeForm()">ADD RECIPE</button>   
+            <button id = "show-form-btn" onclick="showAddRecipeForm()">ADD RECIPE</button>   
         </div>
         <div class="right-column">
         <form id="recipeForm" class="recipe-form">
@@ -45,8 +45,8 @@
             <textarea id="recipeDirections" name="directions" required></textarea><br>
             <label for="recipeYields">Yields</label>
             <input id="recipeYields" name="yields"/><br>
-            <label for="recipePhoto" class="photo-upload-btn">Add a photo</label>
-            <input type="file" id="recipePhoto" name="photo" accept="image/png, image/jpeg, image/jpg" /><br>
+            <!-- <label for="recipePhoto" class="photo-upload-btn">Add a photo</label>
+            <input type="file" id="recipePhoto" name="photo" accept="image/png, image/jpeg, image/jpg" /><br> -->
             <button class="add-btn">Submit</button>
         </form>        
     </div>

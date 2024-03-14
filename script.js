@@ -47,8 +47,14 @@ let recipes = [
 
 //First look of the page
 if (recipes) displayRecipes();
+
 function showAddRecipeForm() {
   show('recipeForm');
+  if (recipes) {
+    hide('recipe-list');
+  }
+  hide('show-form-btn');
+  hide('no-recipes');
 }
 
 //Adding new recipe
@@ -67,7 +73,10 @@ function handleSubmit(event) {
     .trim()
     .split(',')
     .map((i) => i.trim());
-  let directions = directionsInput.value.trim();
+  let directions = directionsInput.value
+    .trim()
+    .split(',')
+    .map((i) => i.trim());
   let yields = yieldsInput.value.trim();
 
   if (
@@ -89,6 +98,8 @@ function handleSubmit(event) {
 
   displayRecipes();
   hide('recipeForm');
+  show('recipe-list');
+  show('show-form-btn');
 }
 
 form.addEventListener('submit', handleSubmit);
@@ -96,6 +107,8 @@ form.addEventListener('submit', handleSubmit);
 //Cancel add new recipe
 function cancelNewRecipe() {
   hide('recipeForm');
+  show('recipe-list');
+  show('show-form-btn');
 }
 
 //Display recipes added
@@ -124,6 +137,7 @@ function buildRecipeCard(recipe, index) {
 }
 
 //View recipe modal
+console.log('Recipe added');
 function viewRecipe(index) {
   const currentRecipe = recipes[index];
   document.getElementById('title').textContent = currentRecipe.name;
@@ -135,7 +149,7 @@ function viewRecipe(index) {
 
   openModal();
 }
-
+console.log('recipe showed');
 function openModal() {
   let modal = document.getElementById('myModal');
   let span = document.getElementsByClassName('close')[0];
@@ -151,6 +165,7 @@ function openModal() {
     }
   };
 }
+console.log('modal opened');
 
 function hide(elementId) {
   document.getElementById(elementId).style.display = 'none';
@@ -182,7 +197,7 @@ function searchRecipe(query) {
 
   filteredRecipes.forEach((recipe, index) => {
     const recipeEl = document.createElement('div');
-    
+
     recipeEl.innerHTML = `
     <h3>${recipe.name}</h3>
     <p><strong>Type:</strong></p>
@@ -199,5 +214,4 @@ function searchRecipe(query) {
 searchBox.addEventListener('input', (event) =>
   searchRecipe(event.target.value)
 );
-searchBox.addEventListener('click', searchRecipe
-);
+// searchBox.addEventListener('click', searchRecipe);

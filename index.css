@@ -12,21 +12,22 @@ body {
   justify-content: center;
 }
 .header::before {
-  content: "";
+  content: '';
   background-image: url('images/background.jpg');
-  background-position-y: 90%;
+  background-position-y: 96%;
+  background-repeat: initial;
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
-  opacity: 0.4; 
+  opacity: 0.4;
 }
 
 .title {
   position: relative;
   font-family: cursive;
-  font-size: 3em;
+  font-size: 4em;
   color: #000;
   opacity: 1;
 }
@@ -64,11 +65,12 @@ body {
   flex-direction: row;
   justify-content: space-around;
   padding: 10px;
-  margin: 150px 5%;
+  margin: 20px 5%;
 }
 
 .left-column {
-  width: 65%;
+  position: absolute;
+  width: 50%;
 }
 
 #recipe-list {
@@ -84,7 +86,7 @@ body {
   margin-top: 44px;
 }
 
-.show-form-btn {
+#show-form-btn {
   padding: 10px;
   background-color: #3338;
   color: #fff;
@@ -100,7 +102,7 @@ body {
 }
 
 .right-column {
-  width: 25%;
+  width: 30%;
 }
 
 form {
