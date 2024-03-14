@@ -3,21 +3,27 @@ body {
 }
 
 .header {
-  background-color: plum;
-  position: fixed;
-  top: 0;
+  position: relative;
   width: 100%;
   padding: 10px;
-  left: 0;
 
   display: flex;
   justify-content: center;
-
-  /* background: url(background.jpg) no-repeat 20% 30% / cover; */
-  /* opacity: 0.5; */
+}
+.header::before {
+  content: "";
+  background-image: url('images/background.jpg');
+  background-position-y: 90%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.4; 
 }
 
 .title {
+  position: relative;
   font-family: cursive;
   font-size: 3em;
   color: #000;
