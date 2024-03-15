@@ -50,9 +50,7 @@ if (recipes) displayRecipes();
 
 function showAddRecipeForm() {
   show('recipeForm');
-  if (recipes) {
-    hide('recipe-list');
-  }
+  hide('recipe-list');
   hide('show-form-btn');
   hide('no-recipes');
 }
@@ -107,7 +105,12 @@ form.addEventListener('submit', handleSubmit);
 //Cancel add new recipe
 function cancelNewRecipe() {
   hide('recipeForm');
-  show('recipe-list');
+
+  if (recipes.length > 0) {
+    show('recipe-list');
+  } else {
+    show('no-recipes');
+  }
   show('show-form-btn');
 }
 
