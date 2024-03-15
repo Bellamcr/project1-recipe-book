@@ -43,6 +43,54 @@ let recipes = [
     ],
     yields: '2 cups',
   },
+  {
+    name: 'Mushroom Risotto',
+    type: 'Meal',
+    ingredients: [
+      '2 tablespoons olive oil',
+      '2 tablespoons butter',
+      '1 onion, finely chopped',
+      '1 pound mushrooms',
+      '2 garlic cloves, crushed',
+      'salt',
+      'pepper',
+      '1 - 2 teaspoons fresh thyme',
+      '1 1/2 cups arborio rice',
+      '1 cup white wine',
+      '4 - 5 cups chicken or vegetable broth',
+      '1 cup frozen peas, thawed (optional)',
+      '1 cup grated parmesan cheese',
+      'fresh parsley',
+    ],
+    directions: [
+      'In a saucepan, simmer broth.',
+      'In a separate saucepan, heat oil over medium heat. Add onions and cook until soft and almost translucent.',
+      'Add butter, mushrooms and cook down. Add garlic and cook until garlic is fragrant. Season with salt, pepper, and thyme.',
+      'Add rice. Stir into mushroom mixture and toast for a minute. Gradually add wine, and cook until the rice has absorbed most of the liquid.',
+      'Decrease the heat and start adding stock slowly, while stirring and allow the rice to absorb the liquid before adding more stock.',
+      'Add peas, then keep adding stock until the rice becomes tender. Texture should be creamy.',
+      'Remove from heat and add cheese. Stir to combine.',
+      'Serve with parsley, parmesan, salt and pepper.',
+    ],
+    yields: 'Servings 4',
+  },
+  {
+    name: 'Classic Brigadeiros',
+    type: 'Dessert',
+    ingredients: [
+      '1 tablespoon butter',
+      '14 oz sweetened condensed milk(395 g)',
+      '¼ cup cocoa powder(30 g)',
+      '1 cup chocolate sprinkle(160 g), as needed',
+    ],
+    directions: [
+      'In a pot over low heat, melt the butter, condensed milk, and cocoa powder, stirring continuously until you can see the bottom of the pot for 2-3 seconds when dragging a spatula through.',
+      'Pour onto a greased plate, then chill for 1 hour.',
+      'Shape and roll the chilled mixture into balls.',
+      'Roll the balls in chocolate sprinkles.',
+    ],
+    yields: '20 brigadeiros',
+  },
 ];
 
 //First look of the page
@@ -73,7 +121,7 @@ function handleSubmit(event) {
     .map((i) => i.trim());
   let directions = directionsInput.value
     .trim()
-    .split(',')
+    .split('.')
     .map((i) => i.trim());
   let yields = yieldsInput.value.trim();
 
@@ -140,15 +188,21 @@ function buildRecipeCard(recipe, index) {
 }
 
 //View recipe modal
-console.log('Recipe added');
 function viewRecipe(index) {
   const currentRecipe = recipes[index];
   document.getElementById('title').textContent = currentRecipe.name;
   document.getElementById('lblYield').textContent = currentRecipe.yields;
-  document.getElementById('lblIngredients').textContent =
-    currentRecipe.ingredients.join(' | ');
-  document.getElementById('lblDirections').textContent =
-    currentRecipe.directions.join(' | ');
+  // TODO: Improve how lists are handled
+  document.getElementById('lblIngredients').innerHTML =
+    currentRecipe.ingredients.reduce(
+      (accumulator, currentValue) => accumulator + `<li>${currentValue}</li>`,
+      ''
+    );
+  document.getElementById('lblDirections').innerHTML =
+    currentRecipe.directions.reduce(
+      (accumulator, currentValue) => accumulator + `<li>${currentValue}</li>`,
+      ''
+    );
 
   openModal();
 }
@@ -179,6 +233,7 @@ function show(elementId) {
 
 hide('recipeForm');
 
+//Delete recipes
 function deleteRecipe(index) {
   const delRecipe = recipes[index];
   if (delRecipe) {
@@ -191,6 +246,7 @@ function deleteRecipe(index) {
 
 recipeList.addEventListener('click', deleteRecipe);
 
+//Search recipes
 function searchRecipe(query) {
   const filteredRecipes = recipes.filter((recipe) => {
     return recipe.name.toLowerCase().includes(query.toLowerCase());
@@ -217,4 +273,4 @@ function searchRecipe(query) {
 searchBox.addEventListener('input', (event) =>
   searchRecipe(event.target.value)
 );
-// searchBox.addEventListener('click', searchRecipe);
+searchBox.addEventListener('click', searchRecipe);
